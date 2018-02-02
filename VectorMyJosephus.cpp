@@ -1,6 +1,6 @@
-#include "ListMyJosephus.h"
+#include "VectorMyJosephus.h"
 
-ListMyJosephus::ListMyJosephus()
+VectorMyJosephus::VectorMyJosephus()
 {
 
     int newN = 0, newM = 0;
@@ -21,7 +21,9 @@ ListMyJosephus::ListMyJosephus()
     init(newN, newM);
 }
 
-ListMyJosephus::ListMyJosephus(int passedN, int passedM)
+VectorMyJosephus::~VectorMyJosephus() {}
+
+VectorMyJosephus::VectorMyJosephus(int passedN, int passedM)
 {
 
     //List size initializer
@@ -31,9 +33,7 @@ ListMyJosephus::ListMyJosephus(int passedN, int passedM)
     init(passedN, passedM);
 }
 
-ListMyJosephus::~ListMyJosephus() {}
-
-void ListMyJosephus::init(int passedN, int passedM)
+void VectorMyJosephus::init(int passedN, int passedM)
 {
 
     this->N = passedN;
@@ -54,64 +54,66 @@ void ListMyJosephus::init(int passedN, int passedM)
     }
 }
 
-void ListMyJosephus::addToCircle(Person passedPerson)
+void VectorMyJosephus::addToCircle(Person passedPerson)
 {
 
     //Push the person to the back of the list, which coincides with the position
     this->circ.push_back(passedPerson);
 }
 
-void ListMyJosephus::clear()
+void VectorMyJosephus::clear()
 {
 
     while (!this->isEmpty())
     {
 
-        //pop the 0 element and decrement the size
-        this->circ.pop_front();
+        //pop the last element and decrement the size
+        this->circ.pop_back();
 
         this->size -= 1;
     }
 }
 
-bool ListMyJosephus::isEmpty()
+bool VectorMyJosephus::isEmpty()
 {
 
     return this->circ.size() == 0;
 }
 
-int ListMyJosephus::currentSize()
+int VectorMyJosephus::currentSize()
 {
 
     return this->size;
 }
 
-void ListMyJosephus::printAll()
+void VectorMyJosephus::printAll()
 {
 
     //iterate through the list and print the position contents
-    list<Person>::iterator location = circ.begin();
+    vector<Person>::iterator location = circ.begin();
 
-    cout << "{" << flush;
+    cout << "{ " << endl;
 
     for (; location != circ.end(); ++location)
     {
 
-        cout << location->getPosition() << flush;
+        cout << location->getPosition() << endl;
     }
 
-    cout << "}" << flush;
+    cout << "}" << endl;
 
     cin.get();
 
     system("clear");
 }
 
-void ListMyJosephus::startGame()
+void VectorMyJosephus::startGame()
 {
 
+    //variables to hold the start and end time of the game
     clock_t startTime, endTime;
 
+    //start the clock
     startTime = clock();
 
     //set the iterator to the biginning the list
@@ -125,7 +127,7 @@ void ListMyJosephus::startGame()
 
         //temp varibale created to test if this element is at the end of
         //the list
-        list<Person>::iterator temp = iterator;
+        vector<Person>::iterator temp = iterator;
         temp++;
 
         if (temp == circ.end())
@@ -157,7 +159,7 @@ void ListMyJosephus::startGame()
     averageEliminationTime = gameDuration / (N-1);
 }
 
-Person ListMyJosephus::eliminateNext()
+Person VectorMyJosephus::eliminateNext()
 {
 
     for (int i = 0; i < M; i++)
@@ -178,7 +180,7 @@ Person ListMyJosephus::eliminateNext()
         iterator = circ.begin();
     }
 
-    //add the the iterator position to the eliminated list
+     //add the the iterator position to the eliminated list
     int toRemove = (*iterator).getPosition();
     this->eliminationSequence.push_back(toRemove);
 
@@ -186,7 +188,7 @@ Person ListMyJosephus::eliminateNext()
     return *iterator;
 }
 
-void ListMyJosephus::PrintEliminationSequence(){
+void VectorMyJosephus::PrintEliminationSequence(){
 
     //prints order of elimination in the form:
     //{ x x2 x3 ... xN-1 }, winner: y 
@@ -194,7 +196,7 @@ void ListMyJosephus::PrintEliminationSequence(){
 
         cout << "Elimination Sequence: { " << flush;
 
-        std::list<int>::iterator it = eliminationSequence.begin();
+        std::vector<int>::iterator it = eliminationSequence.begin();
 
         for(;it != eliminationSequence.end(); ++it){
 
@@ -208,7 +210,7 @@ void ListMyJosephus::PrintEliminationSequence(){
 
 }
 
-void ListMyJosephus::PrintTimingStats(){
+void VectorMyJosephus::PrintTimingStats(){
 
     cout << "Total game time: " << this->gameDuration << "ms" << endl;
 

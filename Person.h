@@ -17,7 +17,7 @@ class Person {
 		//		And of course, no two people can occupy the same position, and 
 		//		no person can occupy more than one position at any given time.
 		// ...
-		Person(int dPosition = 0);
+		Person(int position);
 
 		// Destructor
 		// ...
@@ -25,6 +25,9 @@ class Person {
 		
 		// print the position
 		void print();
+
+		//get position
+		int getPosition();
 		
 
 	private:

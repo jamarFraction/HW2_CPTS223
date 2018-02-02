@@ -13,7 +13,12 @@ Person::~Person(){};
 void Person::print(){
 
     //print out the position of the current person
-    std::cout << this->position << std::endl;
+    std::cout << this->position;
 
 
+}
+
+int Person::getPosition(){
+
+    return this->position;
 }

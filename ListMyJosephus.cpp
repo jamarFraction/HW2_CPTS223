@@ -214,4 +214,8 @@ void ListMyJosephus::PrintTimingStats(){
 
     cout << "Average elimination time: " << this->averageEliminationTime << "ms" << endl;
 
+    // //testing
+    // passedRT = this->gameDuration;
+    // passedAT = this->averageEliminationTime;
+    // //testing
 }
